@@ -1,8 +1,9 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 // Navegação
-import { createStackNavigator, StackView } from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
 // Importação de telas criadas
@@ -11,9 +12,20 @@ import Saldos from './Screens/Saldos';
 
 const Stack = createStackNavigator();
 
+
+export default function App() {
+  return (
+    <NavigationContainer>
+        <Menu/>
+        <StatusBar style="auto" />
+    </NavigationContainer>
+  );
+}
+
 const Menu = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Clientes"
+     screenOptions={() => ({headerShown: false})}>
       <Stack.Screen name="Clientes"
       component={Clientes} />
       <Stack.Screen name="Saldos"
@@ -21,17 +33,6 @@ const Menu = () => {
     </Stack.Navigator>
   )
 }
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Clientes />
-        <Menu/>
-        <StatusBar style="auto" />
-    </NavigationContainer>
-  );
-}
-
 
 const styles = StyleSheet.create({
   container: {
